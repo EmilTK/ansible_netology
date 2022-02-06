@@ -1,0 +1,2 @@
+---
+  some_fact: "New docker container - {{ansible_host}}"

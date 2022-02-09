@@ -1,19 +1,14 @@
 ---
-  el:
-    hosts:
-      centos7:
-        ansible_connection: docker
-  deb:
-    hosts:
-      ubuntu:
-        ansible_connection: docker
+elasticsearch:
+  hosts:
+    elastic_srv01:
+      ansible_host: 192.168.50.250
+      ansible_connection: ssh
+      ansible_user: root
 
-  others:
-    hosts:
-      fedora:
-        ansible_connection: docker
-
-  local:
-    hosts:
-      localhost:
-        ansible_connection: local
+kibana:
+  hosts:
+    kibana_srv01:
+      ansible_host: 192.168.50.251
+      ansible_connection: ssh
+      ansible_user: root

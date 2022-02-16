@@ -1,30 +1,20 @@
-<h3>Установка Elasticsearch, Kibana, Filebeat и загрузка системных логов</h3>
+Плейбук демонстрирующий работу с ролями
+=========
 
-Данный плейбук выполняет установку Elasticsearch, Kibana, Filebeat на 3 отдельные ноды.
-<h5>Plays:</h5>
+Установка Elasticsearch, Kibana, Filebeat
 
-1. Установка Elasticsearch на хосты `elasticsearch`:
-    * Скачивание RPM файла;
-    * Установка Elasticsearch из RPM с применением модуля `yum`;
-    * Копирование заранне подготовленого шаблона конфигурации `templates/elasticsearch.yml.j2` в каталог `/etc/elasticserch` на `manage node`; 
-    
-2. Уствновка Kibana на хосты `kibana`:
-    * Скачивание RPM файла;
-    * Установка Kibana из RPM с применением модуля `yum`;
-    * Копирование заранне подготовленого шаблона конфигурации `templates/kibana.yml.j2` в каталог `/etc/kibana` на `manage node`; 
+Requirements
+------------
 
-3. Уствновка Filebeat на хосты `filebeat`:
-    * Скачивание RPM файла;
-    * Установка Filebeat из RPM с применением модуля `yum`;
-    * Копирование заранне подготовленого шаблона конфигурации `templates/filebeat.yml.j2` в каталог `/etc/filebeat` на `manage node`; 
-    * Запуск `filebeat` на `manage node` с применением модуля `command`, если вывод `filebeat_modules.stdout` не равен `"Module system is alredy enabled"`;
-    * Запуск дашборов `filebeat` игнорирую статус выполнения для сохранения идемпотентности; 
+  * https://github.com/netology-code/mnt-homeworks-ansible
+  * https://github.com/EmilTK/kibana-role
+  * https://github.com/EmilTK/filebeat-role
 
+Variables
+--------------
 
-<h5>ansible-lint</h5>
+  Для установки одной версии всех систем, необходимо в `group_vars/all.yml` определить переменную с желаемой версией систем, и назначить данную роль для следующих переменных:
 
-![ansible-lint](./screenshots/ansible_lint.png)
-
-<h5>Kibana dashboard</h5>
-
-![Kibana_dashboard](./screenshots/kibana_dashboard.png)
+  * elasticsearch_version
+  * kibana_version
+  * filebeat_version

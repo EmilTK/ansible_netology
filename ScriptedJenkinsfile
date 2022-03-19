@@ -1,0 +1,17 @@
+node('ansible'){
+    stage('Checkout git'){
+        git branch: '08-04', credentialsId: '74092a9d-e0e2-46a5-a9f7-bde0932ee998', url: 'git@github.com:EmilTK/ansible_netology.git'
+    }
+    stage('Install dependencies'){
+        sh 'ansible-galaxy install -r requirements.yml'
+    }
+    if (params.prod_run){
+        stage('Run ansible-playbook'){
+            ansiblePlaybook credentialsId: '74092a9d-e0e2-46a5-a9f7-bde0932ee998', inventory: 'inventory/prod', playbook: 'site.yml'
+        }
+    } else {
+        stage('Run ansible-playbook-check'){
+            ansiblePlaybook credentialsId: '74092a9d-e0e2-46a5-a9f7-bde0932ee998', extras: '--check --diff', inventory: 'inventory/prod', playbook: 'site.yml'
+        }  
+    }
+}
